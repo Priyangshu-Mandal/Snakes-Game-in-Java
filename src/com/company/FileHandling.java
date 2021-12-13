@@ -72,8 +72,4 @@ public class FileHandling {
         clip.open(audioInputStream);
         clip.start();
     }
-    // 139/85
-    // 145/91
-    // 138/88
-    // 141/88 avg
 }

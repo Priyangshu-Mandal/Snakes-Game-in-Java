@@ -71,8 +71,6 @@ public class WelcomePanel extends JPanel implements ActionListener {
         g.setColor(new Color(255, 255, 255));
         g.setFont(new Font("MS Reference Sans serif", Font.BOLD, 30));
         g.drawString("Press Esc to Exit", 115, 580);
-//
-//        FileHandling.image("sound.jpg", g, this, 79, 79, 600, 500);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -105,7 +103,6 @@ public class WelcomePanel extends JPanel implements ActionListener {
         }
     }
 
-    // TODO: try to find a way not to make multiple frames
     public class MyMouseAdapter extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -135,7 +132,6 @@ public class WelcomePanel extends JPanel implements ActionListener {
             if (((mouseX >= 233) && (mouseX <= 314)) && ((mouseY >= 478) && (mouseY <= 504))) {
                 new GameFrame(5, 4, "KILLER");
             }
-            System.out.println(mouseX + ", " + mouseY);
         }
     }
 }
