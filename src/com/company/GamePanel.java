@@ -17,8 +17,8 @@ public class GamePanel extends JPanel implements ActionListener {
     static final int UNIT_SIZE = 20;
     static final int GAME_OBJECTS = (SCREEN_HEIGHT*SCREEN_WIDTH)/UNIT_SIZE;
     static int DELAY;
-    final int[] x = new int[GAME_OBJECTS];
-    final int[] y = new int[GAME_OBJECTS];
+    int[] x = new int[GAME_OBJECTS];
+    int[] y = new int[GAME_OBJECTS];
     int bodyPartIncrement;
     int bodyParts = 1;
     int appleX;
@@ -79,13 +79,6 @@ public class GamePanel extends JPanel implements ActionListener {
         }
     }
     public void draw(Graphics g){
-        if (isPaused){
-            g.drawImage(pause, 20, 20, this);
-        }
-        else {
-            g.drawImage(play, 20, 20, this);
-        }
-
         g.setColor(new Color(0, 175, 105));
         g.setFont(new Font("MS Reference Sans serif", Font.BOLD, 35));
         g.drawString("Score: " + score, 400, 400);
@@ -110,6 +103,13 @@ public class GamePanel extends JPanel implements ActionListener {
                 g.setColor(new Color(146, 242, 36));
                 g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
             }
+        }
+
+        if (isPaused){
+            g.drawImage(pause, 0, 0, this);
+        }
+        else {
+            g.drawImage(play, 0, 0, this);
         }
 
         if (!running){
@@ -216,12 +216,12 @@ public class GamePanel extends JPanel implements ActionListener {
                 }
                 case KeyEvent.VK_ENTER -> {
                     if (!running) {
-                        new Welcome();
+                        exit();
                     }
                 }
                 case KeyEvent.VK_SPACE -> {
                     if (!running) {
-                        new GameFrame(DELAY, bodyPartIncrement, level);
+                        restart();
                     } else {
                         isPaused = !isPaused;
                     }
@@ -239,5 +239,21 @@ public class GamePanel extends JPanel implements ActionListener {
                 isPaused = !isPaused;
             }
         }
+    }
+
+    public void restart(){
+        x = new int[GAME_OBJECTS];
+        y = new int[GAME_OBJECTS];
+        bodyParts = 1;
+        score = 0;
+        direction = 'R';
+        isPaused = false;
+        isHiscoreBroken = false;
+        startGame();
+    }
+
+    public void exit(){
+        Main.welcome.setFocusable(true);
+        WelcomePanel.gameFrame.dispose();
     }
 }

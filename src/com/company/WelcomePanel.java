@@ -12,6 +12,7 @@ public class WelcomePanel extends JPanel implements ActionListener {
     private BufferedImage image, sound, mute;
     static boolean isMute;
     Timer timer;
+    static GameFrame gameFrame;
     public WelcomePanel(){
         try {
             image = ImageIO.read(new File("icon.jpg"));
@@ -81,11 +82,11 @@ public class WelcomePanel extends JPanel implements ActionListener {
         @Override
         public void keyPressed(KeyEvent e) {
             switch (e.getKeyCode()){
-                case KeyEvent.VK_0 -> new GameFrame(100, 1, "V_EASY");
-                case KeyEvent.VK_1 -> new GameFrame(75, 2, "EASY");
-                case KeyEvent.VK_2 -> new GameFrame(50, 2, "MEDIUM");
-                case KeyEvent.VK_3 -> new GameFrame(25, 3, "HARD");
-                case KeyEvent.VK_4 -> new GameFrame(5, 4, "KILLER");
+                case KeyEvent.VK_0 -> gameFrame = new GameFrame(100, 1, "V_EASY");
+                case KeyEvent.VK_1 -> gameFrame = new GameFrame(75, 2, "EASY");
+                case KeyEvent.VK_2 -> gameFrame = new GameFrame(50, 2, "MEDIUM");
+                case KeyEvent.VK_3 -> gameFrame = new GameFrame(25, 3, "HARD");
+                case KeyEvent.VK_4 -> gameFrame = new GameFrame(5, 4, "KILLER");
                 case KeyEvent.VK_ESCAPE -> {
                     timer.stop();
                     System.exit(0);

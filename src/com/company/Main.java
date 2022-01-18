@@ -1,7 +1,8 @@
 package com.company;
 
 public class Main {
+    static Welcome welcome;
     public static void main(String[] args) {
-        new Welcome();
+        welcome = new Welcome();
     }
 }
